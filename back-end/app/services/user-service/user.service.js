@@ -23,6 +23,8 @@ exports.login = async (userData) => {
       return existingUser;
     } else {
       const user = new userModel(userData);
+      user.wishlist = new Map();
+      user.favourites = new Map();
       const savedUser = await user.save();
       return savedUser;
     }

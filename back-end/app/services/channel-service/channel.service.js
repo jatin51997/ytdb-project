@@ -216,22 +216,26 @@ exports.getChannelById = async (channelId, userId) => {
     }
     if (userId) {
       const user = await userModel.findById(userId).exec();
+      console.log("user:", user);
       if (user) {
         if (!user.channelsBrowsed || !(user.channelsBrowsed instanceof Map)) {
           user.channelsBrowsed = new Map();
         }
         const channelsBrowsed = user.channelsBrowsed;
+        console.log("channelsBrowsed:", channelsBrowsed);
         if (channelsBrowsed.has(channelId)) {
           channelsBrowsed.set(channelId, new Date());
         } else {
           channelsBrowsed.set(channelId, new Date());
         }
+        console.log("user.wishlist:", user.wishlist);
         if (user.wishlist.has(channelId)) {
           console.log("wishlist has channel");
           existingChannel.Wishlist = true;
         } else {
           existingChannel.Wishlist = false;
         }
+        console.log("user.favourites:", user.favourites);
         if (user.favourites.has(channelId)) {
           console.log("favourites has channel");
           existingChannel.Favourite = true;
