@@ -22,8 +22,12 @@ const logger = config.loggerConfig.logger;
 const models = require("./app/models/");
 const { channelService } = require("./app/services");
 
-var corsOptions = {
-  origin: process.env.CORS_ORIGIN,
+// var corsOptions = {
+//   origin: process.env.CORS_ORIGIN,
+// };
+
+const corsOptions = {
+  origin: ["https://example.com", "http://localhost:3000"], // Add your allowed origins here
 };
 
 const PORT = process.env.SERVER_PORT || 8090;
